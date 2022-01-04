@@ -1,17 +1,39 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names, must_be_immutable, dead_code
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'item/quick_add_item/quick_add_item.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  PageController? pageController;
+  int selectindex = 0;
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: selectindex);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: 400,
+              color: Colors.red,
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text("Dashborad"),
@@ -25,6 +47,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         color: Colors.black,
+        height: 800,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
@@ -33,20 +56,6 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    "Hello, Suth",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      fontSize: 30,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
                 Center(
                   child: Container(
                     width: 380,
@@ -77,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                                       "\$ 0",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 28,
+                                        fontSize: 30,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -85,60 +94,34 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Column(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 35, top: 10),
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue[300],
-                                      borderRadius: BorderRadius.circular(8),
+                            Container(
+                              width: 190,
+                              height: 139,
+                              color: Colors.black,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 35),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "TOTAL'S EXPENSE",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
                                     ),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 20,
-                                          height: 40,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 2),
-                                            child: Image(
-                                              color: Colors.white,
-                                              image: AssetImage(
-                                                  "asset/Finance-Money-icon.png"),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 30),
-                                  child: Text(
-                                    "CASH",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.grey[500]),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 30, top: 5),
-                                  child: Text(
-                                    "897,000,00 KHR",
-                                    style: TextStyle(
+                                    Text(
+                                      "\$ 0",
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
+                                        fontSize: 30,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
@@ -149,40 +132,11 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    "Total Expense",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Container(
-                    width: 380,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white),
-                    child: Center(
-                      child: Text(
-                        "Graph",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Quick Add",
+                      "Select Category",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -267,6 +221,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: WaterDropNavBar(
+          barItems: [
+            BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
+            BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
+          ],
+          selectedIndex: selectindex,
+          onItemSelected: (index) {
+            setState(() {
+              selectindex = index;
+            });
+          }),
     );
   }
 }
