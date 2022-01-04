@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names, must_be_immutable, dead_code
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names, must_be_immutable, dead_code, annotate_overrides, use_key_in_widget_constructors
 
+import 'package:expense_clean_code/presentation/home/item/List_drawer/list_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'item/quick_add_item/quick_add_item.dart';
@@ -29,7 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               height: 200,
               width: 400,
-              color: Colors.red,
+              color: Colors.black,
+              child: Image(
+                image: AssetImage(
+                  "asset/suth.jpg",
+                ),
+                fit: BoxFit.contain,
+              ),
+            ),
+            IconDrawer(
+              icontext: "Category",
+              icon: Icons.category,
+              route: Get.back,
             ),
           ],
         ),
@@ -222,16 +235,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: WaterDropNavBar(
-          barItems: [
-            BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
-            BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
-          ],
-          selectedIndex: selectindex,
-          onItemSelected: (index) {
-            setState(() {
+        barItems: [
+          BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
+          BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
+        ],
+        selectedIndex: selectindex,
+        onItemSelected: (index) {
+          setState(
+            () {
               selectindex = index;
-            });
-          }),
+            },
+          );
+        },
+      ),
     );
   }
 }
