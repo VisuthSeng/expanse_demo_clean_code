@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
-import 'item/quick_add_item/quick_add_item.dart';
+// import 'item/quick_add_item/quick_add_item.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -175,60 +175,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Row(
                   children: [
-                    quick_add_item(
-                      title: "Bonus",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.greenAccent,
-                    ),
-                    quick_add_item(
-                      title: "Food",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.blueAccent,
-                    ),
-                    quick_add_item(
-                      title: "Health",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.redAccent,
-                    ),
-                    quick_add_item(
-                      title: "Hangout",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.blueGrey,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    quick_add_item(
-                      title: "Shopping",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.yellow,
-                    ),
-                    quick_add_item(
-                      title: "Salary",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.red,
-                    ),
-                    quick_add_item(
-                      title: "Transport",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.lightGreen,
-                    ),
-                    quick_add_item(
-                      title: "Utilities",
-                      Colortitle: Colors.white54,
-                      Coloricon: Colors.pink,
-                    ),
+                    // quick_add_item(
+                    //   Colortitle: Colors.white54,
+                    //   Coloricon: Colors.greenAccent,
+                    // ),
                   ],
                 ),
                 Container(
                   color: Colors.black,
                   width: 400,
                   height: 200,
-                )
+                ),
               ],
             ),
           ),

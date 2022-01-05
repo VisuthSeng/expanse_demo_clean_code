@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+
+class TextBox extends StatelessWidget {
+  final String label;
+  final int maxLength;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final void Function()? onKeyReturn;
+  final TextInputAction textInputAction;
+  final bool isReadOnly;
+  final bool isEnabled;
+  final void Function(String value)? onChanged;
+
+  const TextBox({
+    Key? key,
+    this.label = 'tec1',
+    this.maxLength = 50,
+    this.controller,
+    this.focusNode,
+    this.onKeyReturn,
+    this.textInputAction = TextInputAction.done,
+    this.isReadOnly = false,
+    this.isEnabled = true,
+    this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      color: Colors.white,
+      child: TextField(
+        readOnly: isReadOnly,
+        enabled: isEnabled,
+        textInputAction: textInputAction,
+        onSubmitted: (x) {
+          onKeyReturn!();
+        },
+        focusNode: focusNode,
+        onChanged: onChanged,
+        maxLength: maxLength,
+        controller: controller,
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+          counterText: '',
+          labelText: label,
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(5),
+            ),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(5),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

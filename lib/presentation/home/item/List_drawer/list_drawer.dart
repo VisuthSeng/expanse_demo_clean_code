@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
-import 'package:expense_clean_code/presentation/view/select_category/select_category_view.dart';
+import 'package:expense_clean_code/presentation/screen/category/category_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
