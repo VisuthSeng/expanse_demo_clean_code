@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides
+// ignore_for_file: unnecessary_overrides, avoid_print
 
 import 'package:expense_clean_code/data/model/category_model.dart';
 import 'package:expense_clean_code/domain/entity/no_param.dart';
@@ -14,6 +14,7 @@ class CategoryController extends GetxController {
   var blankcategory = CategoryModel(
     name: '',
   );
+
   late CategoryModel selectedCategory;
   var listCategory = RxList<CategoryModel>();
   var isLoading = false.obs;

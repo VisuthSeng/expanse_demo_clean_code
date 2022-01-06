@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Dashborad"),
+        title: const Text("Dashboard"),
         centerTitle: false,
         actions: [
           Padding(

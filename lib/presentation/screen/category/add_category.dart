@@ -102,7 +102,7 @@ class _AddCategoryState extends State<AddCategory> {
           child: Column(
             children: [
               SizedBox(
-                height: 20,
+                height: 150,
               ),
               Container(
                 width: 200,

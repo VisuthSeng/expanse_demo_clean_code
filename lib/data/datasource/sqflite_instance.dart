@@ -1,3 +1,4 @@
+import 'package:expense_clean_code/data/model/category_item_model.dart';
 import 'package:expense_clean_code/data/model/category_model.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -20,12 +21,13 @@ class SqfliteInstance {
   _initDB() async {
     Directory directory = await getApplicationDocumentsDirectory();
 
-    String path = directory.path + 'db9.db';
+    String path = directory.path + 'db11.db';
     return await openDatabase(path, version: 1, onCreate: _onCreateDB);
   }
 
   _onCreateDB(Database db, int version) async {
     await db.execute(CategoryModel.createTable());
+    await db.execute(CategoryItemModel.createTable());
     // await db.execute(MainMenuModel.insertData());
   }
   // _onCreateDA(Database db, int version) async {

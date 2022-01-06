@@ -74,7 +74,8 @@ class CategoryScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 10),
                                   child: GestureDetector(
-                                    onTap: () => Get.defaultDialog(
+                                    onTap: () {
+                                      Get.defaultDialog(
                                         title: "Option",
                                         content: Row(
                                           mainAxisAlignment:
@@ -126,7 +127,9 @@ class CategoryScreen extends StatelessWidget {
                                               ),
                                             ),
                                           ],
-                                        )),
+                                        ),
+                                      );
+                                    },
                                     child: Icon(
                                       Icons.settings_applications,
                                       size: 30,

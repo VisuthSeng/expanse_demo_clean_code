@@ -3,18 +3,18 @@ class CategoryItemModel {
   static const String tableName = 't_categoryitem';
   static const String columnId = 'id';
   static const String columnName = 'name';
-  static const String columnColor = 'color';
+  static const String columnCategoryID = "categoryID";
 
   final int? id;
   final String name;
-  final String? color;
+  final int? categoryid;
 
   //query string for create table
   static String createTable() {
     return """CREATE TABLE $tableName (
         $columnId INTEGER PRIMARY KEY AUTOINCREMENT,   
         $columnName TEXT,
-        $columnColor TEXT
+        $columnCategoryID INTEGER
         )""";
   }
 
@@ -27,13 +27,12 @@ class CategoryItemModel {
   CategoryItemModel({
     this.id,
     required this.name,
-    this.color,
+    this.categoryid,
   });
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       columnName: name,
-      columnColor: color,
     };
     if (id != null) {
       map[columnId] = id;
@@ -45,20 +44,19 @@ class CategoryItemModel {
     return CategoryItemModel(
       // id: map[columnId],
       name: map[columnName],
-      color: map[columnColor],
+      categoryid: map[columnCategoryID],
     );
   }
 
   CategoryItemModel copyWith({
     int? id,
-    String? code,
     String? name,
-    String? color,
+    int? categoryid,
   }) {
     return CategoryItemModel(
       // id: id ?? this.id,
       name: name ?? this.name,
-      color: color ?? this.color,
+      categoryid: categoryid ?? this.categoryid,
     );
   }
 }
