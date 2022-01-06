@@ -3,6 +3,7 @@
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/screen/category/add_category.dart';
+import 'package:expense_clean_code/presentation/screen/category/item/add_category_item.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,9 @@ class CategoryScreen extends StatelessWidget {
                   .map(
                     (x) => GestureDetector(
                       onTap: () {
-                        Get.back();
+                        Get.to(AddCategoryItem(
+                          transactionAction: TransactionAction.add,
+                        ));
                       },
                       child: Column(
                         children: [
@@ -55,14 +58,61 @@ class CategoryScreen extends StatelessWidget {
                                 color: Colors.black),
                             width: 380,
                             height: 70,
-                            child: Center(
-                              child: Text(
-                                x.name,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.orange,
-                                    fontSize: 20),
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  x.name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.orange,
+                                      fontSize: 20),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: GestureDetector(
+                                    onTap: () => Get.defaultDialog(
+                                        title: "Option",
+                                        content: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 120,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: Colors.red),
+                                              child:
+                                                  Center(child: Text("Edit")),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              width: 120,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: Colors.red),
+                                              child:
+                                                  Center(child: Text("Delete")),
+                                            ),
+                                          ],
+                                        )),
+                                    child: Icon(
+                                      Icons.settings_applications,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           SizedBox(

@@ -3,24 +3,18 @@ class CategoryItemModel {
   static const String tableName = 't_categoryitem';
   static const String columnId = 'id';
   static const String columnName = 'name';
-  static const String columnDiscount = 'discount';
-  static const String columnNote = 'note';
-  static const String columnPicture = 'picture';
+  static const String columnColor = 'color';
 
   final int? id;
   final String name;
-  final int discount;
-  final String note;
-  final String? picture;
+  final String? color;
 
   //query string for create table
   static String createTable() {
     return """CREATE TABLE $tableName (
         $columnId INTEGER PRIMARY KEY AUTOINCREMENT,   
-        $columnName TEXT, 
-        $columnDiscount INTEGER, 
-        $columnNote TEXT,  
-        $columnPicture TEXT 
+        $columnName TEXT,
+        $columnColor TEXT
         )""";
   }
 
@@ -33,17 +27,13 @@ class CategoryItemModel {
   CategoryItemModel({
     this.id,
     required this.name,
-    required this.discount,
-    required this.note,
-    this.picture,
+    this.color,
   });
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       columnName: name,
-      columnDiscount: discount,
-      columnNote: note,
-      columnPicture: picture,
+      columnColor: color,
     };
     if (id != null) {
       map[columnId] = id;
@@ -55,9 +45,7 @@ class CategoryItemModel {
     return CategoryItemModel(
       // id: map[columnId],
       name: map[columnName],
-      discount: map[columnDiscount],
-      note: map[columnNote],
-      picture: map[columnPicture],
+      color: map[columnColor],
     );
   }
 
@@ -65,17 +53,12 @@ class CategoryItemModel {
     int? id,
     String? code,
     String? name,
-    String? phone,
-    int? discount,
-    String? note,
-    String? picture,
+    String? color,
   }) {
     return CategoryItemModel(
       // id: id ?? this.id,
       name: name ?? this.name,
-      discount: discount ?? this.discount,
-      note: note ?? this.note,
-      picture: picture ?? this.picture,
+      color: color ?? this.color,
     );
   }
 }
