@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names, must_be_immutable, dead_code, annotate_overrides, use_key_in_widget_constructors
 
-import 'package:expense_clean_code/presentation/home/item/List_drawer/list_drawer.dart';
+import 'package:expense_clean_code/presentation/screen/home/item/List_drawer/list_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -193,8 +193,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: WaterDropNavBar(
         barItems: [
-          BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
-          BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_filled),
+          BarItem(filledIcon: Icons.home, outlinedIcon: Icons.home_outlined),
+          BarItem(
+              filledIcon: Icons.report, outlinedIcon: Icons.report_outlined),
         ],
         selectedIndex: selectindex,
         onItemSelected: (index) {

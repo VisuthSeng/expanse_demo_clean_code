@@ -3,14 +3,15 @@
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/data/model/category_model.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
-import 'package:expense_clean_code/presentation/home/Home_screen.dart';
+
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddCategory extends StatefulWidget {
-  const AddCategory({Key? key, this.transactionAction}) : super(key: key);
-  final TransactionAction? transactionAction;
+  const AddCategory({Key? key, required this.transactionAction})
+      : super(key: key);
+  final TransactionAction transactionAction;
 
   @override
   State<AddCategory> createState() => _AddCategoryState();
@@ -75,13 +76,14 @@ class _AddCategoryState extends State<AddCategory> {
         );
         categoryController.saveData(model);
         Get.back();
-      } else {
-        var entity = CategoryModel(
-          id: categoryController.selectedCategory.id,
-          name: tecName.text,
-        );
-        //customerController.updateData(entity);
       }
+      // else {
+      //   var entity = CategoryModel(
+      //     id: categoryController.selectedCategory.id,
+      //     name: tecName.text,
+      //   );
+      //   //customerController.updateData(entity);
+      // }
     }
   }
 
@@ -129,7 +131,6 @@ class _AddCategoryState extends State<AddCategory> {
               GestureDetector(
                 onTap: () {
                   saveData();
-                  Get.to(HomeScreen());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),

@@ -40,7 +40,7 @@ class CategoryModel {
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) {
     return CategoryModel(
-      // id: map[columnId],
+      id: map[columnId],
       name: map[columnName],
     );
   }

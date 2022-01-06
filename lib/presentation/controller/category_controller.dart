@@ -9,13 +9,16 @@ import 'package:get/get.dart';
 class CategoryController extends GetxController {
   final GetAllCategoryUseCase? getAllCategoryUseCase;
   final AddCategoryUseCase? addCategoryUseCase;
-  var blankCustomer = CategoryModel(
+  var blankcategory = CategoryModel(
     name: '',
   );
   late CategoryModel selectedCategory;
   var listCategory = RxList<CategoryModel>();
   var isLoading = false.obs;
-  CategoryController({this.getAllCategoryUseCase, this.addCategoryUseCase});
+  CategoryController({
+    this.getAllCategoryUseCase,
+    this.addCategoryUseCase,
+  });
 
   @override
   void onInit() {
@@ -25,7 +28,7 @@ class CategoryController extends GetxController {
 
   loadData() async {
     isLoading.value = true;
-    selectedCategory = blankCustomer;
+    selectedCategory = blankcategory;
     listCategory.clear();
     var list = await getAllCategoryUseCase!.call(NoParam());
     listCategory.assignAll(list);

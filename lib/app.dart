@@ -2,7 +2,8 @@
 
 import 'package:expense_clean_code/core/constant/app_route.dart';
 import 'package:expense_clean_code/core/di/main_binding.dart';
-import 'package:expense_clean_code/presentation/home/Home_screen.dart';
+import 'package:expense_clean_code/presentation/screen/home/Home_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
