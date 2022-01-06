@@ -80,34 +80,56 @@ class CategoryScreen extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Container(
-                                              width: 120,
-                                              height: 50,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: Colors.red),
-                                              child:
-                                                  Center(child: Text("Edit")),
+                                            GestureDetector(
+                                              onTap: () {
+                                                categoryController
+                                                    .editCategory(x);
+                                                Get.back();
+                                                Get.to(
+                                                  () => AddCategory(
+                                                    transactionAction:
+                                                        TransactionAction.edit,
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 120,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: Colors.red),
+                                                child:
+                                                    Center(child: Text("Edit")),
+                                              ),
                                             ),
                                             SizedBox(
                                               width: 10,
                                             ),
-                                            Container(
-                                              width: 120,
-                                              height: 50,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: Colors.red),
-                                              child:
-                                                  Center(child: Text("Delete")),
+                                            GestureDetector(
+                                              onTap: () {
+                                                categoryController
+                                                    .deleteData(x.id!);
+                                                Get.back();
+                                              },
+                                              child: Container(
+                                                width: 120,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: Colors.red),
+                                                child: Center(
+                                                    child: Text("Delete")),
+                                              ),
                                             ),
                                           ],
                                         )),
                                     child: Icon(
                                       Icons.settings_applications,
-                                      size: 20,
+                                      size: 30,
                                       color: Colors.white,
                                     ),
                                   ),

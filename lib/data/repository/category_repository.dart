@@ -19,4 +19,16 @@ class CategoryRepository extends ICategoryRepository {
     var id = iCategoryDataSource!.createCategory(model);
     return id;
   }
+
+  @override
+  Future<int> deleteCategory(int recordId) async {
+    var id = await iCategoryDataSource!.deleteCategory(recordId);
+    return id;
+  }
+
+  @override
+  Future<int> updateCategory(CategoryModel model) async {
+    var id = await iCategoryDataSource!.updateCategory(model);
+    return id;
+  }
 }

@@ -20,10 +20,9 @@ class CategoryDataSource extends ICategoryDataSource {
 
   @override
   Future<int> updateCategory(CategoryModel model) async {
-    return 1;
-    // var id = await SqfliteInstance.instance
-    //     .update(map: model.toMap(), tableName: CustomerModel.tableName);
-    // return id;
+    var id = await SqfliteInstance.instance
+        .update(map: model.toMap(), tableName: CategoryModel.tableName);
+    return id;
   }
 
   @override
@@ -39,13 +38,8 @@ class CategoryDataSource extends ICategoryDataSource {
 
   @override
   Future<int> deleteCategory(int recordId) async {
-    return 1;
-    // Database db = await SqfliteInstance.instance.database;
-    // int updateCount = await db.rawUpdate('''
-    // UPDATE ${CustomerModel.tableName}
-    // SET ${CustomerModel.columnActive} = ?
-    // WHERE ${CustomerModel.columnId} = ?
-    // ''', [0, recordId]);
-    // return updateCount;
+    var id = await SqfliteInstance.instance
+        .delete(tableName: CategoryModel.tableName, id: recordId);
+    return id;
   }
 }

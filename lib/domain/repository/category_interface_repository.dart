@@ -5,4 +5,6 @@ import 'package:expense_clean_code/data/model/category_model.dart';
 abstract class ICategoryRepository {
   Future<List<CategoryModel>> getAllCategory();
   Future<int> addCategory(CategoryModel model);
+  Future<int> updateCategory(CategoryModel model);
+  Future<int> deleteCategory(int recordId);
 }

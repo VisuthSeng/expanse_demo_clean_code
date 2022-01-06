@@ -29,3 +29,27 @@ class AddCategoryUseCase extends UseCaseFuture<int, CategoryModel> {
     return id;
   }
 }
+
+class UpdateCategoryUseCase extends UseCaseFuture<int, CategoryModel> {
+  final ICategoryRepository? iCategoryRepository;
+
+  UpdateCategoryUseCase({this.iCategoryRepository});
+
+  @override
+  Future<int> call(CategoryModel params) async {
+    var id = await iCategoryRepository!.updateCategory(params);
+    return id;
+  }
+}
+
+class DeleteCategoryUseCase extends UseCaseFuture<int, int> {
+  final ICategoryRepository? iCategoryRepository;
+
+  DeleteCategoryUseCase({this.iCategoryRepository});
+
+  @override
+  Future<int> call(int params) async {
+    var id = await iCategoryRepository!.deleteCategory(params);
+    return id;
+  }
+}

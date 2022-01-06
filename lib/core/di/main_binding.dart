@@ -74,10 +74,24 @@ class MainBinding extends Bindings {
       ),
       permanent: true,
     );
+    Get.put<UpdateCategoryUseCase?>(
+      UpdateCategoryUseCase(
+        iCategoryRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<DeleteCategoryUseCase?>(
+      DeleteCategoryUseCase(
+        iCategoryRepository: Get.find(),
+      ),
+      permanent: true,
+    );
     Get.put(
       CategoryController(
         addCategoryUseCase: Get.find(),
         getAllCategoryUseCase: Get.find(),
+        updateCategoryUsecase: Get.find(),
+        deleteCategoryUseCase: Get.find(),
       ),
     );
   }

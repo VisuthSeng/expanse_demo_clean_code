@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 class CategoryController extends GetxController {
   final GetAllCategoryUseCase? getAllCategoryUseCase;
   final AddCategoryUseCase? addCategoryUseCase;
+  final UpdateCategoryUseCase? updateCategoryUsecase;
+  final DeleteCategoryUseCase? deleteCategoryUseCase;
   var blankcategory = CategoryModel(
     name: '',
   );
@@ -16,8 +18,10 @@ class CategoryController extends GetxController {
   var listCategory = RxList<CategoryModel>();
   var isLoading = false.obs;
   CategoryController({
+    this.updateCategoryUsecase,
     this.getAllCategoryUseCase,
     this.addCategoryUseCase,
+    this.deleteCategoryUseCase,
   });
 
   @override
@@ -35,6 +39,10 @@ class CategoryController extends GetxController {
     isLoading.value = false;
   }
 
+  editCategory(CategoryModel model) {
+    selectedCategory = model;
+  }
+
   selectCategory(CategoryModel model) {
     selectedCategory = model;
     listCategory.refresh();
@@ -46,5 +54,22 @@ class CategoryController extends GetxController {
     listCategory.add(model.copyWith(id: recordId));
 
     return recordId;
+  }
+
+  Future<int> updateData(CategoryModel model) async {
+    var recordId = await updateCategoryUsecase!.call(model);
+
+    var id = listCategory.indexWhere((x) => x.id == model.id);
+    listCategory[id] = model;
+
+    return recordId;
+  }
+
+  Future<int> deleteData(int recordId) async {
+    var id = await deleteCategoryUseCase!.call(recordId);
+
+    listCategory.removeWhere((x) => x.id == recordId);
+
+    return id;
   }
 }

@@ -76,14 +76,14 @@ class _AddCategoryState extends State<AddCategory> {
         );
         categoryController.saveData(model);
         Get.back();
+      } else {
+        var model = CategoryModel(
+          id: categoryController.selectedCategory.id,
+          name: tecName.text,
+        );
+        categoryController.updateData(model);
+        Get.back();
       }
-      // else {
-      //   var entity = CategoryModel(
-      //     id: categoryController.selectedCategory.id,
-      //     name: tecName.text,
-      //   );
-      //   //customerController.updateData(entity);
-      // }
     }
   }
 
