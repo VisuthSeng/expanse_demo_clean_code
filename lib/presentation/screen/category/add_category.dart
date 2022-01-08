@@ -1,7 +1,9 @@
 // ignore_for_file: unused_local_variable, sized_box_for_whitespace, prefer_const_constructors
 
+import 'package:expense_clean_code/core/constant/app_color.dart';
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/data/model/category_model.dart';
+import 'package:expense_clean_code/data/model/color_model.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
@@ -21,7 +23,7 @@ class _AddCategoryState extends State<AddCategory> {
   final CategoryController categoryController = Get.find();
   late TextEditingController tecName;
   late TextEditingController tecColor;
-
+  late ColorModel selectedColor;
   late FocusNode fnColor;
   late FocusNode fnName;
 
@@ -34,8 +36,13 @@ class _AddCategoryState extends State<AddCategory> {
 
     if (widget.transactionAction == TransactionAction.add) {
       fnName.requestFocus();
+      selectedColor = ColorModel(code: 'grey', color: Colors.grey);
     } else {
       tecName.text = categoryController.selectedCategory.name;
+      var id = AppColor.listColorButton.indexWhere(
+          (x) => x.code == categoryController.selectedCategory.color);
+
+      selectedColor = AppColor.listColorButton[id];
     }
 
     super.initState();
@@ -72,14 +79,17 @@ class _AddCategoryState extends State<AddCategory> {
 
       if (widget.transactionAction == TransactionAction.add) {
         var model = CategoryModel(
-          name: tecName.text,
-        );
+            name: tecName.text,
+            color: selectedColor.code,
+            col: selectedColor.color);
         categoryController.saveData(model);
         Get.back();
       } else {
         var model = CategoryModel(
           id: categoryController.selectedCategory.id,
           name: tecName.text,
+          color: selectedColor.code,
+          col: selectedColor.color,
         );
         categoryController.updateData(model);
         Get.back();
@@ -117,14 +127,29 @@ class _AddCategoryState extends State<AddCategory> {
                 height: 20,
               ),
               Container(
-                width: 200,
-                height: 50,
-                child: TextBox(
-                  controller: tecColor,
-                  focusNode: fnColor,
-                  label: 'Color',
-                ),
-              ),
+                  width: 200,
+                  height: 50,
+                  child: Row(
+                    children: AppColor.listColorButton
+                        .map((x) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedColor = ColorModel(
+                                        code: x.code, color: x.color);
+                                  });
+                                },
+                                child: CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: x.color,
+                                    child: selectedColor.code == x.code
+                                        ? const Text('a')
+                                        : const SizedBox.shrink()),
+                              ),
+                            ))
+                        .toList(),
+                  )),
               SizedBox(
                 height: 40,
               ),

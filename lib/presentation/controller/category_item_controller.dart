@@ -14,7 +14,7 @@ class CategoryItemController extends GetxController {
     name: '',
   );
   late CategoryItemModel selectedCategory;
-  var listCategory = RxList<CategoryItemModel>();
+  var listCategoryItem = RxList<CategoryItemModel>();
   var isLoading = false.obs;
   CategoryItemController({
     this.getAllCategoryItemUseCase,
@@ -32,21 +32,25 @@ class CategoryItemController extends GetxController {
   loadData() async {
     isLoading.value = true;
     selectedCategory = blankcategory;
-    listCategory.clear();
+    listCategoryItem.clear();
     var list = await getAllCategoryItemUseCase!.call(NoParam());
-    listCategory.assignAll(list);
+    listCategoryItem.assignAll(list);
     isLoading.value = false;
   }
 
-  selectCategory(CategoryItemModel model) {
+  editCategoryItem(CategoryItemModel model) {
     selectedCategory = model;
-    listCategory.refresh();
+  }
+
+  selectCategoryItem(CategoryItemModel model) {
+    selectedCategory = model;
+    listCategoryItem.refresh();
   }
 
   Future<int> saveData(CategoryItemModel model) async {
     var recordId = await addCategoryItemUseCase!.call(model);
 
-    listCategory.add(model.copyWith(id: recordId));
+    listCategoryItem.add(model.copyWith(id: recordId));
 
     return recordId;
   }
@@ -54,8 +58,8 @@ class CategoryItemController extends GetxController {
   Future<int> updateData(CategoryItemModel model) async {
     var recordId = await updateCategoryItemUseCase!.call(model);
 
-    var id = listCategory.indexWhere((x) => x.id == model.id);
-    listCategory[id] = model;
+    var id = listCategoryItem.indexWhere((x) => x.id == model.id);
+    listCategoryItem[id] = model;
 
     return recordId;
   }
@@ -63,7 +67,7 @@ class CategoryItemController extends GetxController {
   Future<int> deleteData(int recordId) async {
     var id = await deleteCategoryItemUseCase!.call(recordId);
 
-    listCategory.removeWhere((x) => x.id == recordId);
+    listCategoryItem.removeWhere((x) => x.id == recordId);
 
     return id;
   }

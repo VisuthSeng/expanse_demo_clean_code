@@ -52,7 +52,11 @@ class CategoryController extends GetxController {
   Future<int> saveData(CategoryModel model) async {
     var recordId = await addCategoryUseCase!.call(model);
 
-    listCategory.add(model.copyWith(id: recordId));
+    listCategory.add(model.copyWith(
+      id: recordId,
+      color: model.color!,
+      col: model.col,
+    ));
 
     return recordId;
   }
