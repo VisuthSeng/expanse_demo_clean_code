@@ -1,9 +1,10 @@
 // ignore_for_file: unused_local_variable, sized_box_for_whitespace, prefer_const_constructors
 
+import 'package:expense_clean_code/core/constant/app_color.dart';
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/data/model/category_item_model.dart';
-import 'package:expense_clean_code/data/model/category_model.dart';
 
+import 'package:expense_clean_code/data/model/color_model.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
@@ -23,7 +24,7 @@ class _AddCategoryState extends State<AddCategoryItem> {
   final CategoryItemController categoryItemController = Get.find();
   late TextEditingController tecName;
   late TextEditingController tecColor;
-
+  late ColorModel selectedColor;
   late FocusNode fnColor;
   late FocusNode fnName;
 
@@ -36,8 +37,13 @@ class _AddCategoryState extends State<AddCategoryItem> {
 
     if (widget.transactionAction == TransactionAction.add) {
       fnName.requestFocus();
+      selectedColor = ColorModel(code: 'grey', color: Colors.grey);
     } else {
       tecName.text = categoryItemController.selectedCategory.name;
+      var id = AppColor.listColorButton.indexWhere(
+          (x) => x.code == categoryItemController.selectedCategory.color);
+
+      selectedColor = AppColor.listColorButton[id];
     }
 
     super.initState();
@@ -74,16 +80,19 @@ class _AddCategoryState extends State<AddCategoryItem> {
 
       if (widget.transactionAction == TransactionAction.add) {
         var model = CategoryItemModel(
-          name: tecName.text,
-        );
+            name: tecName.text,
+            color: selectedColor.code,
+            col: selectedColor.color);
         categoryItemController.saveData(model);
         Get.back();
       } else {
-        var model = CategoryModel(
+        var model = CategoryItemModel(
           id: categoryItemController.selectedCategory.id,
           name: tecName.text,
+          color: selectedColor.code,
+          col: selectedColor.color,
         );
-        categoryItemController.updateData;
+        categoryItemController.updateData(model);
         Get.back();
       }
     }
@@ -120,13 +129,39 @@ class _AddCategoryState extends State<AddCategoryItem> {
               ),
               Container(
                 width: 200,
-                height: 50,
-                child: TextBox(
-                  controller: tecColor,
-                  focusNode: fnColor,
-                  label: 'Color',
+                height: 30,
+                child: Text(
+                  "Pick a background color",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
               ),
+              Container(
+                  width: 400,
+                  height: 50,
+                  child: Row(
+                    children: AppColor.listColorButton
+                        .map((x) => Padding(
+                              padding: const EdgeInsets.only(left: 40.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedColor = ColorModel(
+                                        code: x.code, color: x.color);
+                                  });
+                                },
+                                child: CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: x.color,
+                                    child: selectedColor.code == x.code
+                                        ? const Text('')
+                                        : const SizedBox.shrink()),
+                              ),
+                            ))
+                        .toList(),
+                  )),
               SizedBox(
                 height: 40,
               ),

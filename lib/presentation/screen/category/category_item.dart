@@ -3,7 +3,7 @@
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
-import 'package:expense_clean_code/presentation/screen/category/add_category.dart';
+
 import 'package:expense_clean_code/presentation/screen/category/item/add_category_item.dart';
 
 import 'package:flutter/material.dart';
@@ -27,9 +27,9 @@ class CategoryItemScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
                 onTap: () {
-                  Get.to(AddCategoryItem(
-                    transactionAction: TransactionAction.add,
-                  ));
+                  Get.to(() => AddCategoryItem(
+                        transactionAction: TransactionAction.add,
+                      ));
                 },
                 child: Icon(Icons.add)),
           ),
@@ -44,9 +44,9 @@ class CategoryItemScreen extends StatelessWidget {
                   .map(
                     (x) => GestureDetector(
                       onTap: () {
-                        Get.to(AddCategoryItem(
-                          transactionAction: TransactionAction.add,
-                        ));
+                        Get.to(() => AddCategoryItem(
+                              transactionAction: TransactionAction.add,
+                            ));
                       },
                       child: Column(
                         children: [
@@ -56,7 +56,7 @@ class CategoryItemScreen extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.black),
+                                color: x.col),
                             width: 380,
                             height: 70,
                             child: Row(
@@ -88,7 +88,7 @@ class CategoryItemScreen extends StatelessWidget {
                                                     .editCategoryItem(x);
                                                 Get.back();
                                                 Get.to(
-                                                  () => AddCategory(
+                                                  () => AddCategoryItem(
                                                     transactionAction:
                                                         TransactionAction.edit,
                                                   ),

@@ -127,12 +127,23 @@ class _AddCategoryState extends State<AddCategory> {
                 height: 20,
               ),
               Container(
-                  width: 200,
+                width: 200,
+                height: 30,
+                child: Text(
+                  "Pick a background color",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              Container(
+                  width: 400,
                   height: 50,
                   child: Row(
                     children: AppColor.listColorButton
                         .map((x) => Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(left: 40.0),
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -144,7 +155,7 @@ class _AddCategoryState extends State<AddCategory> {
                                     radius: 15,
                                     backgroundColor: x.color,
                                     child: selectedColor.code == x.code
-                                        ? const Text('a')
+                                        ? const Text('')
                                         : const SizedBox.shrink()),
                               ),
                             ))

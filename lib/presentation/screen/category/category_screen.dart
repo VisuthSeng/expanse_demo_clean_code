@@ -25,11 +25,9 @@ class CategoryScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
-                onTap: () {
-                  Get.to(AddCategory(
-                    transactionAction: TransactionAction.add,
-                  ));
-                },
+                onTap: () => Get.to(() => AddCategory(
+                      transactionAction: TransactionAction.add,
+                    )),
                 child: Icon(Icons.add)),
           ),
         ],
@@ -43,7 +41,7 @@ class CategoryScreen extends StatelessWidget {
                   .map(
                     (x) => GestureDetector(
                       onTap: () {
-                        Get.to(CategoryItemScreen());
+                        Get.to(() => CategoryItemScreen());
                       },
                       child: Column(
                         children: [

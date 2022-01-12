@@ -109,7 +109,7 @@ class MainBinding extends Bindings {
       CategoryItemController(
         addCategoryItemUseCase: Get.find(),
         getAllCategoryItemUseCase: Get.find(),
-        updateCategoryItemUseCase: Get.find(),
+        updateCategoryItemUsecase: Get.find(),
         deleteCategoryItemUseCase: Get.find(),
       ),
     );
