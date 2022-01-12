@@ -3,7 +3,7 @@
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/screen/category/add_category.dart';
-import 'package:expense_clean_code/presentation/screen/category/category_item.dart';
+import 'package:expense_clean_code/presentation/screen/category/item/category_item.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
