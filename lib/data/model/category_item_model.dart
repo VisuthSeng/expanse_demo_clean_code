@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 
 class CategoryItemModel {
   //field for table
-  static const String tableName = 't_category';
+  static const String tableName = 't_category_item';
   static const String columnId = 'id';
+  static const String columnCategoryID = "categoryID";
   static const String columnName = 'name';
-  static const String tcategoryID = "tcategoryID";
   static const String columnColor = 'color';
 
   final int? id;
+  final int categoryId;
   final String name;
   final String? color;
   final Color? col;
@@ -17,8 +18,10 @@ class CategoryItemModel {
   //query string for create table
   static String createTable() {
     return """CREATE TABLE $tableName (
-        $columnId INTEGER PRIMARY KEY AUTOINCREMENT,  
-        $columnColor TEXT,$columnName TEXT)""";
+        $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
+        $columnCategoryID INTEGER,
+        $columnName TEXT,
+        $columnColor TEXT)""";
   }
 
   // static String insertData() {
@@ -28,14 +31,16 @@ class CategoryItemModel {
   // }
 
   CategoryItemModel({
+    this.id,
+    required this.categoryId,
+    required this.name,
     this.col,
     this.color,
-    this.id,
-    required this.name,
   });
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
+      columnCategoryID: categoryId,
       columnName: name,
       columnColor: color,
     };
@@ -51,6 +56,7 @@ class CategoryItemModel {
     var coll = AppColor.listColorButton[id];
     return CategoryItemModel(
       id: map[columnId],
+      categoryId: map[columnCategoryID],
       name: map[columnName],
       color: map[columnColor],
       col: coll.color,
@@ -59,15 +65,17 @@ class CategoryItemModel {
 
   CategoryItemModel copyWith({
     int? id,
+    int? categoryId,
     String? name,
-    required String color,
+    String? color,
     Color? col,
   }) {
     return CategoryItemModel(
       id: id ?? this.id,
+      categoryId: categoryId ?? this.categoryId,
       name: name ?? this.name,
-      color: color,
-      col: col,
+      color: color ?? this.color,
+      col: col ?? this.col,
     );
   }
 }

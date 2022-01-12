@@ -20,6 +20,20 @@ class GetAllCategoryItemUseCase
   }
 }
 
+class GetCategoryItemByIdUseCase
+    extends UseCaseFuture<List<CategoryItemModel>, int> {
+  final ICategoryItemRepository? iCategoryItemRepository;
+
+  GetCategoryItemByIdUseCase({this.iCategoryItemRepository});
+
+  @override
+  Future<List<CategoryItemModel>> call(int params) async {
+    List<CategoryItemModel> listcategory =
+        await iCategoryItemRepository!.getAllCategoryItemByCategoryId(params);
+    return listcategory;
+  }
+}
+
 class AddCategoryItemUseCase extends UseCaseFuture<int, CategoryItemModel> {
   final ICategoryItemRepository? iCategoryItemRepository;
 

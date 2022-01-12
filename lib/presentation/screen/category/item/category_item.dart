@@ -1,16 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
+import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 
 import 'package:expense_clean_code/presentation/screen/category/item/add_category_item.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryItemScreen extends StatelessWidget {
   final CategoryItemController categoryItemController = Get.find();
+  final CategoryController categoryController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class CategoryItemScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
-        title: const Text(
-          "Category Items",
+        title: Text(
+          categoryController.selectedCategory.name,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -44,6 +47,7 @@ class CategoryItemScreen extends StatelessWidget {
                   .map(
                     (x) => GestureDetector(
                       onTap: () {
+                        categoryController.selectedCategory;
                         Get.to(() => AddCategoryItem(
                               transactionAction: TransactionAction.add,
                             ));
@@ -132,7 +136,7 @@ class CategoryItemScreen extends StatelessWidget {
                                       );
                                     },
                                     child: Icon(
-                                      Icons.settings_applications,
+                                      CupertinoIcons.info,
                                       size: 30,
                                       color: Colors.white,
                                     ),

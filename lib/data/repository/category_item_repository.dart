@@ -32,4 +32,12 @@ class CategoryItemRepository extends ICategoryItemRepository {
     var id = await iCategoryItemDataSource!.updateCategoryItem(model);
     return id;
   }
+
+  @override
+  Future<List<CategoryItemModel>> getAllCategoryItemByCategoryId(
+      int recordId) async {
+    List<CategoryItemModel> listCategoryItemByID =
+        await iCategoryItemDataSource!.readCategoryItemByCategoryId(recordId);
+    return listCategoryItemByID;
+  }
 }

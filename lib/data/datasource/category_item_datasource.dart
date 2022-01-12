@@ -2,12 +2,14 @@
 
 import 'package:expense_clean_code/data/datasource/sqflite_instance.dart';
 import 'package:expense_clean_code/data/model/category_item_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 abstract class ICategoryItemDataSource {
   Future<int> createCategoryItem(CategoryItemModel model);
   Future<int> updateCategoryItem(CategoryItemModel model);
   Future<int> deleteCategoryItem(int recordId);
   Future<List<CategoryItemModel>> readCategoryItem();
+  Future<List<CategoryItemModel>> readCategoryItemByCategoryId(int recordId);
 }
 
 class CategoryItemDataSource extends ICategoryItemDataSource {
@@ -29,6 +31,20 @@ class CategoryItemDataSource extends ICategoryItemDataSource {
   Future<List<CategoryItemModel>> readCategoryItem() async {
     var json = await SqfliteInstance.instance
         .read(tableName: CategoryItemModel.tableName);
+    List<CategoryItemModel> list = [];
+    for (var x in json) {
+      list.add(CategoryItemModel.fromMap(x));
+    }
+    return list;
+  }
+
+  @override
+  Future<List<CategoryItemModel>> readCategoryItemByCategoryId(
+      int recordId) async {
+    Database db = await SqfliteInstance.instance.database;
+    var json = await db.query(CategoryItemModel.tableName,
+        where: "${CategoryItemModel.columnCategoryID} = ?",
+        whereArgs: [recordId]);
     List<CategoryItemModel> list = [];
     for (var x in json) {
       list.add(CategoryItemModel.fromMap(x));

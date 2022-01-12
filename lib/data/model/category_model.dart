@@ -6,7 +6,6 @@ class CategoryModel {
   static const String tableName = 't_category';
   static const String columnId = 'id';
   static const String columnName = 'name';
-
   static const String columnColor = 'color';
 
   final int? id;

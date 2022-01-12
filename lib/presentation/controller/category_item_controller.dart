@@ -2,8 +2,8 @@
 
 import 'package:expense_clean_code/data/model/category_item_model.dart';
 
-import 'package:expense_clean_code/domain/entity/no_param.dart';
 import 'package:expense_clean_code/domain/usecase/category_item_usecase.dart';
+import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 
 import 'package:get/get.dart';
 
@@ -12,8 +12,10 @@ class CategoryItemController extends GetxController {
   final AddCategoryItemUseCase? addCategoryItemUseCase;
   final UpdateCategoryItemUseCase? updateCategoryItemUsecase;
   final DeleteCategoryItemUseCase? deleteCategoryItemUseCase;
+  final GetCategoryItemByIdUseCase? getCategoryItemByIdUseCase;
   var blankcategory = CategoryItemModel(
     name: '',
+    categoryId: 0,
   );
 
   late CategoryItemModel selectedCategory;
@@ -22,13 +24,13 @@ class CategoryItemController extends GetxController {
   CategoryItemController({
     this.updateCategoryItemUsecase,
     this.getAllCategoryItemUseCase,
+    this.getCategoryItemByIdUseCase,
     this.addCategoryItemUseCase,
     this.deleteCategoryItemUseCase,
   });
 
   @override
   void onInit() {
-    loadData();
     super.onInit();
   }
 
@@ -36,7 +38,9 @@ class CategoryItemController extends GetxController {
     isLoading.value = true;
     selectedCategory = blankcategory;
     listCategoryItem.clear();
-    var list = await getAllCategoryItemUseCase!.call(NoParam());
+    final CategoryController categoryController = Get.find();
+    var list = await getCategoryItemByIdUseCase!
+        .call(categoryController.selectedCategory.id!);
     listCategoryItem.assignAll(list);
     isLoading.value = false;
   }
@@ -55,8 +59,6 @@ class CategoryItemController extends GetxController {
 
     listCategoryItem.add(model.copyWith(
       id: recordId,
-      color: model.color!,
-      col: model.col,
     ));
 
     return recordId;

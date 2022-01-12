@@ -2,8 +2,10 @@
 
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
+import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 import 'package:expense_clean_code/presentation/screen/category/add_category.dart';
 import 'package:expense_clean_code/presentation/screen/category/item/category_item.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,6 +43,10 @@ class CategoryScreen extends StatelessWidget {
                   .map(
                     (x) => GestureDetector(
                       onTap: () {
+                        categoryController.selectCategory(x);
+                        final CategoryItemController categoryItemController =
+                            Get.find();
+                        categoryItemController.loadData();
                         Get.to(() => CategoryItemScreen());
                       },
                       child: Column(
@@ -127,7 +133,7 @@ class CategoryScreen extends StatelessWidget {
                                       );
                                     },
                                     child: Icon(
-                                      Icons.settings_applications,
+                                      CupertinoIcons.info,
                                       size: 30,
                                       color: Colors.white,
                                     ),
