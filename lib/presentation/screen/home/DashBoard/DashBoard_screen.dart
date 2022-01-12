@@ -158,28 +158,30 @@ class DashBoardScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  SingleChildScrollView(
-                    child: SizedBox(
-                      width: 400,
-                      height: 600,
-                      child: GridView.count(
-                        scrollDirection: Axis.vertical,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        padding: EdgeInsets.all(12),
-                        crossAxisCount: 3,
-                        children: categoryController.listCategory
-                            .map(
-                              (x) => Container(
-                                height: 10,
-                                width: 10,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.grey),
-                                child: Center(child: Text(x.name)),
-                              ),
-                            )
-                            .toList(),
+                  Obx(
+                    () => SingleChildScrollView(
+                      child: SizedBox(
+                        width: 400,
+                        height: 600,
+                        child: GridView.count(
+                          scrollDirection: Axis.vertical,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          padding: EdgeInsets.all(12),
+                          crossAxisCount: 3,
+                          children: categoryController.listCategory
+                              .map(
+                                (x) => Container(
+                                  height: 10,
+                                  width: 10,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: x.col),
+                                  child: Center(child: Text(x.name)),
+                                ),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),
