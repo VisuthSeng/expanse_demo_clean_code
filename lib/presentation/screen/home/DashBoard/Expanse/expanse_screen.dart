@@ -77,7 +77,7 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.grey),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 100, top: 25),
+                      padding: const EdgeInsets.only(left: 80, bottom: 5),
                       child: TextBox(
                         hinttext: "\$ 00.00",
                         controller: tecAmount,

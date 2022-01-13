@@ -29,9 +29,10 @@ class TextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 30,
       color: Colors.grey,
       child: TextField(
+        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         readOnly: isReadOnly,
         enabled: isEnabled,
         textInputAction: textInputAction,
