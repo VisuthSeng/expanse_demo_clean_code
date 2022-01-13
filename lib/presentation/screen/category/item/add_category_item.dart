@@ -115,7 +115,7 @@ class _AddCategoryState extends State<AddCategoryItem> {
         child: Container(
           width: 400,
           height: 800,
-          color: Colors.black,
+          color: Colors.white,
           child: Column(
             children: [
               SizedBox(
@@ -125,6 +125,7 @@ class _AddCategoryState extends State<AddCategoryItem> {
                 width: 200,
                 height: 70,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
@@ -135,9 +136,10 @@ class _AddCategoryState extends State<AddCategoryItem> {
                   ],
                 ),
                 child: TextBox(
+                  hinttext: "Category Items",
                   controller: tecName,
                   focusNode: fnName,
-                  label: 'Category Item',
+                  label: '',
                 ),
               ),
               SizedBox(

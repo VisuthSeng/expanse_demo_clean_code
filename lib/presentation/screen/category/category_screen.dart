@@ -34,122 +34,130 @@ class CategoryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Obx(
-        () => SingleChildScrollView(
-          child: Container(
-            width: 500,
-            child: Column(
-              children: categoryController.listCategory
-                  .map(
-                    (x) => GestureDetector(
-                      onTap: () {
-                        categoryController.selectCategory(x);
-                        final CategoryItemController categoryItemController =
-                            Get.find();
-                        categoryItemController.loadData();
-                        Get.to(() => CategoryItemScreen());
-                      },
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: x.col),
-                            width: 380,
-                            height: 70,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Text(
-                                  x.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.orange,
-                                      fontSize: 20),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.defaultDialog(
-                                        title: "Option",
-                                        content: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                categoryController
-                                                    .editCategory(x);
-                                                Get.back();
-                                                Get.to(
-                                                  () => AddCategory(
-                                                    transactionAction:
-                                                        TransactionAction.edit,
-                                                  ),
-                                                );
-                                              },
-                                              child: Container(
-                                                width: 120,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    color: Colors.red),
-                                                child:
-                                                    Center(child: Text("Edit")),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                categoryController
-                                                    .deleteData(x.id!);
-                                                Get.back();
-                                              },
-                                              child: Container(
-                                                width: 120,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    color: Colors.red),
-                                                child: Center(
-                                                    child: Text("Delete")),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                    child: Icon(
-                                      CupertinoIcons.info,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              ],
+      body: Container(
+        height: 800,
+        width: 500,
+        color: Colors.black,
+        child: Obx(
+          () => SingleChildScrollView(
+            child: Container(
+              width: 800,
+              color: Colors.black,
+              child: Column(
+                children: categoryController.listCategory
+                    .map(
+                      (x) => GestureDetector(
+                        onTap: () {
+                          categoryController.selectCategory(x);
+                          final CategoryItemController categoryItemController =
+                              Get.find();
+                          categoryItemController.loadData();
+                          Get.to(() => CategoryItemScreen());
+                        },
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                        ],
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: x.col),
+                              width: 380,
+                              height: 70,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text(
+                                    x.name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.orange,
+                                        fontSize: 20),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Get.defaultDialog(
+                                          title: "Option",
+                                          content: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  categoryController
+                                                      .editCategory(x);
+                                                  Get.back();
+                                                  Get.to(
+                                                    () => AddCategory(
+                                                      transactionAction:
+                                                          TransactionAction
+                                                              .edit,
+                                                    ),
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 120,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: Colors.red),
+                                                  child: Center(
+                                                      child: Text("Edit")),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  categoryController
+                                                      .deleteData(x.id!);
+                                                  Get.back();
+                                                },
+                                                child: Container(
+                                                  width: 120,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: Colors.red),
+                                                  child: Center(
+                                                      child: Text("Delete")),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      child: Icon(
+                                        CupertinoIcons.info,
+                                        size: 30,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
             ),
           ),
         ),

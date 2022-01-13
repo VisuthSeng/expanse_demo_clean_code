@@ -108,7 +108,7 @@ class _AddCategoryState extends State<AddCategory> {
         child: Container(
           width: 400,
           height: 800,
-          color: Colors.black,
+          color: Colors.white,
           child: Column(
             children: [
               SizedBox(
@@ -118,9 +118,10 @@ class _AddCategoryState extends State<AddCategory> {
                 width: 200,
                 height: 50,
                 child: TextBox(
+                  hinttext: "Category Name",
                   controller: tecName,
                   focusNode: fnName,
-                  label: 'Category Name',
+                  label: '',
                 ),
               ),
               SizedBox(

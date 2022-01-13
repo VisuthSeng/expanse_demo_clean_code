@@ -21,14 +21,14 @@ class IconDrawer extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: Colors.black,
+        color: Colors.white,
       ),
       onTap: () {
         Get.to(() => CategoryScreen());
       },
       title: Text(
         icontext!,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.white),
       ),
     );
   }

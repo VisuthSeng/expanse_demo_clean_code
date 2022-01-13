@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextBox extends StatelessWidget {
   final String label;
+  final String hinttext;
   final int maxLength;
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -22,13 +23,14 @@ class TextBox extends StatelessWidget {
     this.isReadOnly = false,
     this.isEnabled = true,
     this.onChanged,
+    required this.hinttext,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      color: Colors.white,
+      color: Colors.grey,
       child: TextField(
         readOnly: isReadOnly,
         enabled: isEnabled,
@@ -40,24 +42,11 @@ class TextBox extends StatelessWidget {
         onChanged: onChanged,
         maxLength: maxLength,
         controller: controller,
-        cursorColor: Colors.white,
+        cursorColor: Colors.black,
         decoration: InputDecoration(
           counterText: '',
           labelText: label,
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(5),
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.white,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(5),
-            ),
-          ),
+          hintText: hinttext,
         ),
       ),
     );
