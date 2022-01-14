@@ -107,54 +107,56 @@ class _AddCategoryState extends State<AddCategoryItem> {
           categoryController.selectedCategory.name,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: 400,
-          height: 800,
-          color: Colors.white,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 150,
+      body: Container(
+        width: 480,
+        height: 800,
+        color: Colors.white,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 150,
+            ),
+            Container(
+              width: 200,
+              height: 70,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
-              Container(
-                width: 200,
-                height: 70,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: TextBox(
-                  hinttext: "Category Items",
-                  controller: tecName,
-                  focusNode: fnName,
-                  label: '',
-                ),
+              child: TextBox(
+                hinttext: "Category Items",
+                controller: tecName,
+                focusNode: fnName,
+                label: '',
               ),
-              SizedBox(
-                height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: 200,
+              height: 30,
+              child: Text(
+                "Pick a background color",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
               ),
-              Container(
-                width: 200,
-                height: 30,
-                child: Text(
-                  "Pick a background color",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-              Container(
-                  width: 400,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                  width: 500,
                   height: 50,
+                  color: Colors.black,
                   child: Row(
                     children: AppColor.listColorButton
                         .map((x) => Padding(
@@ -169,40 +171,40 @@ class _AddCategoryState extends State<AddCategoryItem> {
                                     radius: 15,
                                     backgroundColor: x,
                                     child: selectedColor.value == x.value
-                                        ? const Text('W')
+                                        ? const Icon(Icons.check)
                                         : const SizedBox.shrink()),
                               ),
                             ))
                         .toList(),
                   )),
-              SizedBox(
-                height: 40,
-              ),
-              GestureDetector(
-                onTap: () {
-                  saveData();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Container(
-                    width: 100,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Colors.orange,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Save",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            GestureDetector(
+              onTap: () {
+                saveData();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: Colors.orange,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

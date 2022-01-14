@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
@@ -7,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ExpanseScreen extends StatefulWidget {
-  const ExpanseScreen({Key? key}) : super(key: key);
-
+  const ExpanseScreen({Key? key, required this.transactionAction})
+      : super(key: key);
+  final TransactionAction transactionAction;
   @override
   State<ExpanseScreen> createState() => _ExpanseScreenState();
 }
@@ -24,6 +26,9 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
   void initState() {
     tecAmount = TextEditingController();
     fnAmount = FocusNode();
+    if (widget.transactionAction == TransactionAction.add) {
+      fnAmount.requestFocus();
+    } else {}
     super.initState();
   }
 
@@ -77,7 +82,7 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.grey),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 80, bottom: 5),
+                      padding: const EdgeInsets.only(left: 80, bottom: 10),
                       child: TextBox(
                         hinttext: "\$ 00.00",
                         controller: tecAmount,

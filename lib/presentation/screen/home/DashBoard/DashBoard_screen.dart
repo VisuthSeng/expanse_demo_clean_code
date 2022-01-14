@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, use_key_in_widget_constructors
 
+import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
-import 'package:expense_clean_code/presentation/screen/category/category_screen.dart';
+
 import 'package:expense_clean_code/presentation/screen/home/DashBoard/Expanse/expanse_screen.dart';
 
 import 'package:expense_clean_code/presentation/screen/home/item/List_drawer/list_drawer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -142,9 +144,7 @@ class DashBoardScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => CategoryScreen());
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black,
                   ),
@@ -182,7 +182,10 @@ class DashBoardScreen extends StatelessWidget {
                                   final CategoryItemController
                                       categoryItemController = Get.find();
                                   categoryItemController.loadData();
-                                  Get.to(() => ExpanseScreen());
+                                  Get.to(() => ExpanseScreen(
+                                        transactionAction:
+                                            TransactionAction.add,
+                                      ));
                                 },
                                 child: Container(
                                   height: 10,

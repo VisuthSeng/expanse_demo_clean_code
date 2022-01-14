@@ -77,7 +77,7 @@ class CategoryScreen extends StatelessWidget {
                                     x.name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.orange,
+                                        color: Colors.black,
                                         fontSize: 20),
                                   ),
                                   Padding(
