@@ -13,6 +13,7 @@ class CategoryController extends GetxController {
   final DeleteCategoryUseCase? deleteCategoryUseCase;
   var blankcategory = CategoryModel(
     name: '',
+    colorNumber: 0,
   );
 
   late CategoryModel selectedCategory;
@@ -54,8 +55,6 @@ class CategoryController extends GetxController {
 
     listCategory.add(model.copyWith(
       id: recordId,
-      color: model.color!,
-      col: model.col,
     ));
 
     return recordId;

@@ -4,7 +4,6 @@ import 'package:expense_clean_code/core/constant/app_color.dart';
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/data/model/category_item_model.dart';
 
-import 'package:expense_clean_code/data/model/color_model.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 
@@ -26,26 +25,25 @@ class _AddCategoryState extends State<AddCategoryItem> {
   final CategoryController categoryController = Get.find();
   late TextEditingController tecName;
   late TextEditingController tecColor;
-  late ColorModel selectedColor;
-  late FocusNode fnColor;
+  late Color selectedColor;
+
   late FocusNode fnName;
 
   @override
   void initState() {
     tecName = TextEditingController();
     tecColor = TextEditingController();
-    fnColor = FocusNode();
+
     fnName = FocusNode();
 
     if (widget.transactionAction == TransactionAction.add) {
       fnName.requestFocus();
-      selectedColor = ColorModel(code: 'grey', color: Colors.grey);
+      selectedColor = Colors.white;
     } else {
       tecName.text = categoryItemController.selectedCategory.name;
-      var id = AppColor.listColorButton.indexWhere(
-          (x) => x.code == categoryItemController.selectedCategory.color);
 
-      selectedColor = AppColor.listColorButton[id];
+      selectedColor =
+          Color(categoryItemController.selectedCategory.colorNumber);
     }
 
     super.initState();
@@ -55,7 +53,6 @@ class _AddCategoryState extends State<AddCategoryItem> {
   void dispose() {
     tecName.dispose();
     tecColor.dispose();
-    fnColor.dispose();
 
     fnName.dispose();
     super.dispose();
@@ -82,10 +79,10 @@ class _AddCategoryState extends State<AddCategoryItem> {
 
       if (widget.transactionAction == TransactionAction.add) {
         var model = CategoryItemModel(
-            categoryId: categoryController.selectedCategory.id!,
-            name: tecName.text,
-            color: selectedColor.code,
-            col: selectedColor.color);
+          categoryId: categoryController.selectedCategory.id!,
+          name: tecName.text,
+          colorNumber: selectedColor.value,
+        );
         categoryItemController.saveData(model);
         Get.back();
       } else {
@@ -93,8 +90,7 @@ class _AddCategoryState extends State<AddCategoryItem> {
           id: categoryItemController.selectedCategory.id,
           categoryId: categoryController.selectedCategory.id!,
           name: tecName.text,
-          color: selectedColor.code,
-          col: selectedColor.color,
+          colorNumber: selectedColor.value,
         );
         categoryItemController.updateData(model);
         Get.back();
@@ -166,15 +162,14 @@ class _AddCategoryState extends State<AddCategoryItem> {
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedColor = ColorModel(
-                                        code: x.code, color: x.color);
+                                    selectedColor = x;
                                   });
                                 },
                                 child: CircleAvatar(
                                     radius: 15,
-                                    backgroundColor: x.color,
-                                    child: selectedColor.code == x.code
-                                        ? const Text('')
+                                    backgroundColor: x,
+                                    child: selectedColor.value == x.value
+                                        ? const Text('W')
                                         : const SizedBox.shrink()),
                               ),
                             ))

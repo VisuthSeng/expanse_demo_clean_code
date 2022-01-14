@@ -32,7 +32,7 @@ class TextBox extends StatelessWidget {
       height: 30,
       color: Colors.grey,
       child: TextField(
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         readOnly: isReadOnly,
         enabled: isEnabled,
         textInputAction: textInputAction,
@@ -48,6 +48,12 @@ class TextBox extends StatelessWidget {
           counterText: '',
           labelText: label,
           hintText: hinttext,
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
         ),
       ),
     );

@@ -134,8 +134,9 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
                               height: 10,
                               width: 10,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: x.col),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color(x.colorNumber),
+                              ),
                               child: Center(
                                   child: Text(
                                 x.name,

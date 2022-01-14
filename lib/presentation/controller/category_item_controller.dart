@@ -4,6 +4,7 @@ import 'package:expense_clean_code/data/model/category_item_model.dart';
 
 import 'package:expense_clean_code/domain/usecase/category_item_usecase.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
@@ -16,8 +17,9 @@ class CategoryItemController extends GetxController {
   var blankcategory = CategoryItemModel(
     name: '',
     categoryId: 0,
+    colorNumber: 0,
   );
-
+  var selectedColor = Rx<Color>(Colors.white);
   late CategoryItemModel selectedCategory;
   var listCategoryItem = RxList<CategoryItemModel>();
   var isLoading = false.obs;
@@ -52,6 +54,11 @@ class CategoryItemController extends GetxController {
   selectCategoryItem(CategoryItemModel model) {
     selectedCategory = model;
     listCategoryItem.refresh();
+  }
+
+  selectColor(Color color) {
+    selectedColor.value = color;
+    selectedColor.refresh();
   }
 
   Future<int> saveData(CategoryItemModel model) async {

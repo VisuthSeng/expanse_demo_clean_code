@@ -63,8 +63,9 @@ class CategoryItemScreen extends StatelessWidget {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: x.col),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color(x.colorNumber),
+                              ),
                               width: 380,
                               height: 70,
                               child: Row(
