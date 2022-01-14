@@ -11,7 +11,7 @@ abstract class IExpenseDataSource {
   Future<List<ExpenseModel>> readExpense();
 }
 
-class CategoryDataSource extends IExpenseDataSource {
+class ExpenseDataSource extends IExpenseDataSource {
   @override
   Future<int> createExpense(ExpenseModel model) async {
     var id = await SqfliteInstance.instance

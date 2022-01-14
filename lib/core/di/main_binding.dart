@@ -1,16 +1,20 @@
 import 'package:expense_clean_code/data/datasource/category_datasource.dart';
 import 'package:expense_clean_code/data/datasource/category_item_datasource.dart';
+import 'package:expense_clean_code/data/datasource/expense_datasource.dart';
 import 'package:expense_clean_code/data/repository/app_repository.dart';
 import 'package:expense_clean_code/data/repository/category_item_repository.dart';
 import 'package:expense_clean_code/data/repository/category_repository.dart';
+import 'package:expense_clean_code/data/repository/expense_repository.dart';
 
 import 'package:expense_clean_code/domain/repository/app_repository_interface.dart';
 import 'package:expense_clean_code/domain/repository/category_interface_repository.dart';
 import 'package:expense_clean_code/domain/repository/category_item_interface_repository.dart';
+import 'package:expense_clean_code/domain/repository/expense_item_interface_repository.dart';
 
 import 'package:expense_clean_code/domain/usecase/app_usecase.dart';
 import 'package:expense_clean_code/domain/usecase/category_item_usecase.dart';
 import 'package:expense_clean_code/domain/usecase/category_usecase.dart';
+import 'package:expense_clean_code/domain/usecase/expense_usecase.dart';
 
 import 'package:expense_clean_code/presentation/controller/app_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
@@ -102,6 +106,54 @@ class MainBinding extends Bindings {
     Get.put<UpdateCategoryItemUseCase?>(
       UpdateCategoryItemUseCase(
         iCategoryItemRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<DeleteCategoryItemUseCase?>(
+      DeleteCategoryItemUseCase(
+        iCategoryItemRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put(
+      CategoryItemController(
+        addCategoryItemUseCase: Get.find(),
+        getAllCategoryItemUseCase: Get.find(),
+        getCategoryItemByIdUseCase: Get.find(),
+        updateCategoryItemUsecase: Get.find(),
+        deleteCategoryItemUseCase: Get.find(),
+      ),
+    );
+
+    Get.put<IExpenseDataSource?>(
+      ExpenseDataSource(),
+      permanent: true,
+    );
+    Get.put<IExpenseRepository?>(
+      ExpenseRepository(expenseDataSource: Get.find()),
+      permanent: true,
+    );
+    Get.put<GetAllExpenseUseCase?>(
+      GetAllExpenseUseCase(
+        expenseRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<GetExpenseByIdUseCase?>(
+      GetExpenseByIdUseCase(
+        expenseRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<AddExpenseUseCase?>(
+      AddExpenseUseCase(
+        expenseRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<UpdateExpenseUseCase?>(
+      UpdateExpenseUseCase(
+        expenseRepository: Get.find(),
       ),
       permanent: true,
     );
