@@ -4,14 +4,17 @@ class ExpenseModel {
   static const String columnId = 'id';
   static const String columnCategoryID = "categoryID";
   static const String columnAmount = 'amount';
-  static const String columnDate = 'columnDate';
-  static const String columnNote = 'columnNote';
+
+  static const String columnNote = 'note';
+  static const String columnDatetime = 'datetime';
+  static const String columnCategoryItem = "categoryItem";
 
   final int? id;
   final int categoryId;
   final String amount;
-  final String date;
-  final String? note;
+  final DateTime dateTime;
+  final String note;
+  final String categoryItem;
 
   //query string for create table
   static String createTable() {
@@ -19,7 +22,8 @@ class ExpenseModel {
         $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
         $columnCategoryID INTEGER,
         $columnAmount TEXT,
-        $columnDate TEXT,
+        $columnDatetime TEXT,
+        $columnCategoryItem TEXT,
         $columnNote TEXT)""";
   }
 
@@ -32,15 +36,16 @@ class ExpenseModel {
   ExpenseModel(
       {this.id,
       required this.categoryId,
+      required this.categoryItem,
       required this.amount,
-      required this.date,
-      this.note});
+      required this.dateTime,
+      required this.note});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       columnCategoryID: categoryId,
       columnAmount: amount,
-      columnDate: date,
+      columnDatetime: dateTime.toIso8601String(),
       columnNote: note,
     };
     if (id != null) {
@@ -53,8 +58,9 @@ class ExpenseModel {
     return ExpenseModel(
       id: map[columnId],
       categoryId: map[columnCategoryID],
+      categoryItem: map[columnCategoryItem],
       amount: map[columnAmount],
-      date: map[columnDate],
+      dateTime: DateTime.parse(map[columnDatetime]),
       note: map[columnNote],
     );
   }
@@ -62,16 +68,18 @@ class ExpenseModel {
   ExpenseModel copyWith({
     int? id,
     int? categoryId,
+    String? categoryItem,
     String? amount,
-    String? date,
+    required DateTime dateTime,
     String? note,
   }) {
     return ExpenseModel(
       id: id ?? this.id,
       categoryId: categoryId ?? this.categoryId,
+      categoryItem: categoryItem ?? this.categoryItem,
       amount: amount ?? this.amount,
-      date: date ?? this.date,
-      note: date ?? this.date,
+      note: note ?? this.note,
+      dateTime: dateTime,
     );
   }
 }

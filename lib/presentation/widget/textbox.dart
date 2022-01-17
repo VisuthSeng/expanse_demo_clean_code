@@ -45,6 +45,7 @@ class TextBox extends StatelessWidget {
         controller: controller,
         cursorColor: Colors.black,
         decoration: InputDecoration(
+          prefixText: "",
           counterText: '',
           labelText: label,
           hintText: hinttext,

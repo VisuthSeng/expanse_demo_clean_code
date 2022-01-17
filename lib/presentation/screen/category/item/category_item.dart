@@ -145,7 +145,7 @@ class CategoryItemScreen extends StatelessWidget {
                                       child: Icon(
                                         CupertinoIcons.info,
                                         size: 30,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   )

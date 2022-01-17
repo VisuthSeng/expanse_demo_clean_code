@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, file_names, must_be_immutable, dead_code, annotate_overrides, use_key_in_widget_constructors
 
+import 'package:expense_clean_code/presentation/controller/expense_view_controller.dart';
 import 'package:expense_clean_code/presentation/screen/home/DashBoard/DashBoard_screen.dart';
 import 'package:expense_clean_code/presentation/screen/home/History/History_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // import 'item/quick_add_item/quick_add_item.dart';
 
@@ -23,6 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void onTapped(int index) {
     setState(() {
       selectindex = index;
+      if (selectindex == 1) {
+        final ExpenseViewController expenseViewController = Get.find();
+
+        expenseViewController.loadData();
+      }
     });
     pageController!.jumpToPage(index);
   }

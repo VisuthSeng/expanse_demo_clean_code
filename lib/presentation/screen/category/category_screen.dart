@@ -141,9 +141,9 @@ class CategoryScreen extends StatelessWidget {
                                         );
                                       },
                                       child: Icon(
-                                        CupertinoIcons.info,
+                                        CupertinoIcons.chart_bar,
                                         size: 30,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   )

@@ -110,7 +110,7 @@ class _AddCategoryState extends State<AddCategoryItem> {
       body: Container(
         width: 480,
         height: 800,
-        color: Colors.white,
+        color: Colors.black,
         child: Column(
           children: [
             SizedBox(

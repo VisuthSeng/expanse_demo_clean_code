@@ -5,6 +5,7 @@ import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/data/model/category_model.dart';
 
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
+import 'package:expense_clean_code/presentation/controller/expense_view_controller.dart';
 
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class AddCategory extends StatefulWidget {
 
 class _AddCategoryState extends State<AddCategory> {
   final CategoryController categoryController = Get.find();
+  final ExpenseViewController expenseViewController = Get.find();
   late TextEditingController tecName;
   late TextEditingController tecColor;
   late FocusNode fnColor;
@@ -105,7 +107,7 @@ class _AddCategoryState extends State<AddCategory> {
       body: Container(
         width: 400,
         height: 800,
-        color: Colors.white,
+        color: Colors.black,
         child: Column(
           children: [
             SizedBox(

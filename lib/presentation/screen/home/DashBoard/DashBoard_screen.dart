@@ -104,7 +104,7 @@ class DashBoardScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  "TOTAL'S EXPENSE",
+                                  "MONTHLY'S EXPENSE",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
