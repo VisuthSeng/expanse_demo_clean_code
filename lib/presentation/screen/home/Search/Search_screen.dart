@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:expense_clean_code/core/constant/app_date_filter.dart';
 import 'package:expense_clean_code/presentation/controller/expense_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -131,7 +132,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: expenseViewController.listtoday
+                    children: AppDateFilter.listDateFilter
                         .map(
                           (x) => Row(
                             children: [
