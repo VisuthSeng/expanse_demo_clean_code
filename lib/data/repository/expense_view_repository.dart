@@ -15,4 +15,20 @@ class ExpenseViewRepository extends IExpenseViewRepository {
         await expenseViewDataSource!.readExpense();
     return listexpenseview;
   }
+
+  @override
+  Future<List<ExpenseViewModel>> getAllExpensebyDate(
+      DateTime startdate, DateTime enddate) async {
+    List<ExpenseViewModel> listexpensebyDate =
+        await expenseViewDataSource!.readExpensebyDate(startdate, enddate);
+    return listexpensebyDate;
+  }
+
+  @override
+  Future<double> getSumExpenseToday(
+      DateTime startdate, DateTime enddate) async {
+    var listsumExpense =
+        await expenseViewDataSource!.readSumExpensebyDate(startdate, enddate);
+    return listsumExpense;
+  }
 }

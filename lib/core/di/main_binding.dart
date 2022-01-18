@@ -193,10 +193,24 @@ class MainBinding extends Bindings {
       ),
       permanent: true,
     );
+    Get.put<GetAllExpenseViewByDateUseCase?>(
+      GetAllExpenseViewByDateUseCase(
+        expenseViewRepository: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put<GetAllSumExpenseByDateUseCase?>(
+      GetAllSumExpenseByDateUseCase(
+        expenseViewRepository: Get.find(),
+      ),
+      permanent: true,
+    );
 
     Get.put(
       ExpenseViewController(
         getAllExpenseViewUseCase: Get.find(),
+        getAllExpenseViewByDateUseCase: Get.find(),
+        getAllSumExpenseByDateUseCase: Get.find(),
       ),
     );
   }

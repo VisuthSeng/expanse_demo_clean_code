@@ -19,3 +19,31 @@ class GetAllExpenseViewUseCase
     return listProduct;
   }
 }
+
+class GetAllExpenseViewByDateUseCase
+    extends UseCaseFutureTwoParam<List<ExpenseViewModel>, DateTime, DateTime> {
+  final IExpenseViewRepository? expenseViewRepository;
+
+  GetAllExpenseViewByDateUseCase({this.expenseViewRepository});
+
+  @override
+  Future<List<ExpenseViewModel>> call(DateTime param1, DateTime param2) async {
+    List<ExpenseViewModel> listexpensebyDate =
+        await expenseViewRepository!.getAllExpensebyDate(param1, param2);
+    return listexpensebyDate;
+  }
+}
+
+class GetAllSumExpenseByDateUseCase
+    extends UseCaseFutureTwoParam<double, DateTime, DateTime> {
+  final IExpenseViewRepository? expenseViewRepository;
+
+  GetAllSumExpenseByDateUseCase({this.expenseViewRepository});
+
+  @override
+  Future<double> call(DateTime param1, DateTime param2) async {
+    var totalexpensebyDate =
+        await expenseViewRepository!.getSumExpenseToday(param1, param2);
+    return totalexpensebyDate;
+  }
+}

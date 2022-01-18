@@ -14,7 +14,7 @@ class ExpenseModel {
   final String amount;
   final DateTime dateTime;
   final String note;
-  final String categoryItem;
+  final String? categoryItem;
 
   //query string for create table
   static String createTable() {

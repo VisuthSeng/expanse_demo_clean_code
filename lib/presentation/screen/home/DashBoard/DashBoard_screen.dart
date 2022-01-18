@@ -3,16 +3,15 @@
 import 'package:expense_clean_code/core/enum/transaction_action_enum.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
-
+import 'package:expense_clean_code/presentation/controller/expense_view_controller.dart';
 import 'package:expense_clean_code/presentation/screen/home/DashBoard/Expanse/expanse_screen.dart';
-
 import 'package:expense_clean_code/presentation/screen/home/item/List_drawer/list_drawer.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashBoardScreen extends StatelessWidget {
   final CategoryController categoryController = Get.find();
+  final ExpenseViewController expenseViewController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -51,167 +50,173 @@ class DashBoardScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        color: Colors.black,
-        height: 800,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                width: 380,
-                height: 130,
-                color: Colors.grey[850],
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 190,
-                          height: 139,
-                          color: Colors.black,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 35),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "TODAY'S EXPENSE",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "\$ 0",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30,
-                                    color: Colors.white,
+      body: Obx(
+        () => Container(
+          color: Colors.black,
+          height: 800,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 380,
+                  height: 130,
+                  color: Colors.grey[850],
+                  child: Row(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 190,
+                            height: 139,
+                            color: Colors.black,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 35),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "TODAY'S EXPENSE",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    expenseViewController.totaltoday.value
+                                        .toString(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 190,
-                          height: 139,
-                          color: Colors.black,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 35),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "MONTHLY'S EXPENSE",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "\$ 0",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30,
-                                    color: Colors.white,
+                          Container(
+                            width: 190,
+                            height: 139,
+                            color: Colors.black,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 35),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "MONTHLY'S EXPENSE",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    expenseViewController.totalmonth.value
+                                        .toString(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Select Category",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                  ),
-                  child: Text(
-                    "Manage Category",
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Select Category",
                     style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
-              children: [
-                Obx(
-                  () => SingleChildScrollView(
-                    child: SizedBox(
-                      width: 400,
-                      height: 400,
-                      child: GridView.count(
-                        scrollDirection: Axis.vertical,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        padding: EdgeInsets.all(12),
-                        crossAxisCount: 3,
-                        children: categoryController.listCategory
-                            .map(
-                              (x) => GestureDetector(
-                                onTap: () {
-                                  categoryController.selectCategory(x);
-                                  final CategoryItemController
-                                      categoryItemController = Get.find();
-                                  categoryItemController.loadData();
-                                  Get.to(() => ExpanseScreen(
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                    ),
+                    child: Text(
+                      "Manage Category",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Column(
+                children: [
+                  Obx(
+                    () => SingleChildScrollView(
+                      child: SizedBox(
+                        width: 400,
+                        height: 400,
+                        child: GridView.count(
+                          scrollDirection: Axis.vertical,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          padding: EdgeInsets.all(12),
+                          crossAxisCount: 3,
+                          children: categoryController.listCategory
+                              .map(
+                                (x) => GestureDetector(
+                                  onTap: () {
+                                    categoryController.selectCategory(x);
+                                    final CategoryItemController
+                                        categoryItemController = Get.find();
+                                    categoryItemController.loadData();
+                                    Get.to(
+                                      () => ExpanseScreen(
                                         transactionAction:
                                             TransactionAction.add,
-                                      ));
-                                },
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(x.colorNumber),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(x.colorNumber),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      x.name,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                    )),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                    x.name,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  )),
                                 ),
-                              ),
-                            )
-                            .toList(),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:expense_clean_code/data/model/expense_model.dart';
 import 'package:expense_clean_code/presentation/controller/category_controller.dart';
 import 'package:expense_clean_code/presentation/controller/category_item_controller.dart';
 import 'package:expense_clean_code/presentation/controller/expense_controller.dart';
+import 'package:expense_clean_code/presentation/controller/expense_view_controller.dart';
 import 'package:expense_clean_code/presentation/widget/textbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,6 +72,7 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
           categoryItem: categoryItemController.selectedCategory.name,
         );
         expenseController.saveData(model);
+
         Get.back();
       } else {
         // var model = ExpenseModel(
@@ -98,9 +100,12 @@ class _ExpanseScreenState extends State<ExpanseScreen> {
           GestureDetector(
             onTap: () {
               saveData();
+              final ExpenseViewController expenseViewController = Get.find();
+              expenseViewController.getDashBoardExpense();
               Get.snackbar("You have saved", "Add Expensed",
                   backgroundColor: Colors.orange,
                   snackPosition: SnackPosition.BOTTOM);
+              Get.back();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 20, right: 30),

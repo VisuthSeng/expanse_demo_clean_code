@@ -26,7 +26,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.black,
           child: Column(
             children: [
               Obx(
@@ -86,6 +85,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     ],
                                   ),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Text(
                                         x.note,
