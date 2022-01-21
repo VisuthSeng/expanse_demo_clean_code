@@ -23,21 +23,21 @@ class AppDateFilter {
       startDate: DateTime(DateTime.now().year, DateTime.now().month,
           DateTime.monday + 16, 0, 0, 0),
       endDate: DateTime(DateTime.now().year, DateTime.now().month,
-          DateTime.now().day + 9, 0, 0, 0),
+          DateTime.monday + 23, 0, 0, 0),
     ),
     PickDateModel(
       name: "This Month",
       startDate: DateTime(
           DateTime.now().year, DateTime.now().month, DateTime.monday, 0, 0, 1),
       endDate: DateTime(DateTime.now().year, DateTime.now().month + 1,
-          DateTime.monday, 23, 59, 59),
+          DateTime.monday, 0, 0, 0),
     ),
     PickDateModel(
       name: "This Year",
       startDate: DateTime(
           DateTime.now().year, DateTime.now().month, DateTime.monday, 0, 0, 1),
       endDate: DateTime(DateTime.now().year + 1, DateTime.now().month,
-          DateTime.monday, 23, 59, 59),
+          DateTime.monday, 0, 0, 0),
     ),
   ];
 }

@@ -53,7 +53,7 @@ class DashBoardScreen extends StatelessWidget {
       body: Obx(
         () => Container(
           color: Colors.black,
-          height: 800,
+          height: 700,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -168,8 +168,8 @@ class DashBoardScreen extends StatelessWidget {
                   Obx(
                     () => SingleChildScrollView(
                       child: SizedBox(
-                        width: 400,
-                        height: 400,
+                        width: double.infinity,
+                        height: 300,
                         child: GridView.count(
                           scrollDirection: Axis.vertical,
                           mainAxisSpacing: 10,
