@@ -140,6 +140,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                 onTap: () {
                                   expenseViewController.getexpensebyDate(
                                       x.startDate, x.endDate);
+                                  Get.snackbar(x.startDate.toString(),
+                                      x.endDate.toString(),
+                                      colorText: Colors.white,
+                                      snackPosition: SnackPosition.BOTTOM);
                                 },
                                 child: Container(
                                   width: 100,
@@ -257,7 +261,8 @@ class _SearchScreenState extends State<SearchScreen> {
       lastDate: DateTime(DateTime.now().year + 3),
     );
     setState(() {
-      startDate = DateTime(date!.year, date.month, date.day, 0, 0, 1);
+      startDate = DateTime(date!.year, date.month, date.day, date.hour,
+          date.minute, date.second);
     });
   }
 
@@ -269,7 +274,8 @@ class _SearchScreenState extends State<SearchScreen> {
       lastDate: DateTime(DateTime.now().year + 3),
     );
     setState(() {
-      endDate = DateTime(date!.year, date.month, date.day, 23, 59, 59);
+      endDate = DateTime(date!.year, date.month, date.day, date.hour,
+          date.minute, date.second);
     });
   }
 }
